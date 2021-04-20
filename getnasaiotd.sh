@@ -1,6 +1,8 @@
 #!/bin/bash
 
 IOTD_DIR=$HOME/iotd
+IMG_LINK=$IOTD_DIR/iotd
+
 mkdir -p $IOTD_DIR
 
 RSS_URL="https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss"
@@ -14,5 +16,6 @@ IMG_FILE=$IOTD_DIR/$(basename $IMG_URL)
 wget --continue --output-document $IMG_FILE $IMG_URL
 
 # Create a symbolic to easily access the last IOTD
-# The ‘--force’ flag is to replace the old one.
-ln --symbolic --force $IMG_FILE $IOTD_DIR/iotd
+# First remove old one
+rm -f $IMG_LINK
+ln --symbolic $IMG_FILE $IMG_LINK
