@@ -12,7 +12,6 @@ wget --output-document $RSS_FILE $RSS_URL
 XPATH="string(/rss/channel/item[1]/enclosure/@url)"
 IMG_URL=$(xmllint --xpath $XPATH $RSS_FILE)
 IMG_FILE=$IOTD_DIR/$(basename $IMG_URL)
-
 wget --continue --output-document $IMG_FILE $IMG_URL
 
 # Create a symbolic to easily access the last IOTD
